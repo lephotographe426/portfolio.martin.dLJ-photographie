@@ -139,6 +139,11 @@ section{padding:100px 0}
 .card h3{font-size:24px;font-weight:600;margin-bottom:6px}
 .card p{margin:0;color:var(--accent-light);font-size:13px;letter-spacing:.04em;text-transform:uppercase}
 
+/* grille animalière : 6 colonnes — portraits par 3, photos paysage (détectées automatiquement) par 2 */
+.grid-photos{grid-template-columns:repeat(6,1fr);grid-auto-flow:dense}
+.grid-photos .card{grid-column:span 2;min-height:0;aspect-ratio:3/4}
+.grid-photos .card.wide{grid-column:span 3;aspect-ratio:3/2}
+
 /* placeholder state shown automatically until a real photo is added */
 .card .placeholder{
   position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;
@@ -181,6 +186,9 @@ footer{padding:28px 0;color:#7a6f5e;border-top:1px solid var(--line);font-size:1
   .grid,.about{grid-template-columns:1fr}
   .stats{grid-template-columns:1fr}
   .card{min-height:300px}
+  .grid-photos{grid-template-columns:1fr}
+  .grid-photos .card,.grid-photos .card.wide{grid-column:auto;aspect-ratio:4/5}
+  .grid-photos .card.wide{aspect-ratio:3/2}
   section{padding:70px 0}
   .tab{padding:14px 16px;font-size:17px}
   .tab .count{display:none}
@@ -217,7 +225,7 @@ footer{padding:28px 0;color:#7a6f5e;border-top:1px solid var(--line);font-size:1
   COMMENT AJOUTER VOS PHOTOS
   1. Placez vos fichiers images dans le MÊME dossier que ce fichier index.html
   2. Nommez-les exactement comme indiqué dans chaque bloc <img> ci-dessous
-     (ex : faune-01.jpg, auto-01.jpg, macro-01.jpg ...)
+     (ex : animalier-ara-bleu-jaune.jpg, auto-01.jpg, macro-01.jpg ...)
   3. Tant qu'une photo n'est pas présente, un emplacement provisoire
      s'affiche automatiquement à sa place — vous n'avez rien d'autre à faire.
   4. Vous pouvez librement changer les titres et légendes (h3 / p) une fois
@@ -229,49 +237,151 @@ footer{padding:28px 0;color:#7a6f5e;border-top:1px solid var(--line);font-size:1
 <!-- ===== BARRE D'ONGLETS ===== -->
 <div class="tabs" role="tablist" aria-label="Catégories de photos">
 <button class="tab" role="tab" id="tab-animaliere" aria-controls="panel-animaliere" aria-selected="true" data-tab="animaliere">Animalière<span class="count"></span></button>
-<button class="tab" role="tab" id="tab-voiture" aria-controls="panel-voiture" aria-selected="false" tabindex="-1" data-tab="voiture">Automobile<span class="count"></span></button>
+<button class="tab" role="tab" id="tab-voiture" aria-controls="panel-voiture" aria-selected="false" tabindex="-1" data-tab="voiture">Voiture<span class="count"></span></button>
 <button class="tab" role="tab" id="tab-macro" aria-controls="panel-macro" aria-selected="false" tabindex="-1" data-tab="macro">Macro<span class="count"></span></button>
 </div>
 
 <!-- ===== ONGLET 1 : PHOTO ANIMALIÈRE ===== -->
 <div class="tab-panel" role="tabpanel" id="panel-animaliere" aria-labelledby="tab-animaliere">
 <div class="panel-sub">Oiseaux &amp; faune sauvage • Portraits • En vol</div>
-<div class="grid">
+<div class="grid grid-photos">
 
 <article class="card">
 <div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-01.jpg</code></div>
-<img class="photo" src="faune-01.jpg" alt="Faune sauvage 1">
-<div class="card-content"><h3>Envergure</h3><p>Oiseaux</p></div>
+<img class="photo" src="faune-01.jpg" alt="Vautour en plein vol" decoding="async">
+<div class="card-content"><h3>Maître du ciel</h3><p>Oiseaux</p></div>
 </article>
 
 <article class="card">
 <div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-02.jpg</code></div>
-<img class="photo" src="faune-02.jpg" alt="Faune sauvage 2">
-<div class="card-content"><h3>Regard</h3><p>Oiseaux</p></div>
+<img class="photo" src="faune-02.jpg" alt="Grand-duc qui regarde droit vers l'objectif" decoding="async">
+<div class="card-content"><h3>Regard perçant</h3><p>Oiseaux</p></div>
 </article>
 
 <article class="card">
 <div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-03.jpg</code></div>
-<img class="photo" src="faune-03.jpg" alt="Faune sauvage 3">
+<img class="photo" src="faune-03.jpg" alt="Lion" loading="lazy" decoding="async">
 <div class="card-content"><h3>Le roi</h3><p>Mammifères</p></div>
 </article>
 
 <article class="card">
 <div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-04.jpg</code></div>
-<img class="photo" src="faune-04.jpg" alt="Faune sauvage 4">
-<div class="card-content"><h3>Curiosité</h3><p>Mammifères</p></div>
+<img class="photo" src="faune-04.jpg" alt="Lémurien qui observe, le regard attentif" loading="lazy" decoding="async">
+<div class="card-content"><h3>Curieux</h3><p>Mammifères</p></div>
 </article>
 
 <article class="card">
 <div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-05.jpg</code></div>
-<img class="photo" src="faune-05.jpg" alt="Faune sauvage 5">
-<div class="card-content"><h3>Couleurs en mouvement</h3><p>Oiseaux</p></div>
+<img class="photo" src="faune-05.jpg" alt="Ara bleu et jaune en plein vol" loading="lazy" decoding="async">
+<div class="card-content"><h3>Ailes déployées</h3><p>Oiseaux</p></div>
 </article>
 
 <article class="card">
 <div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-06.jpg</code></div>
-<img class="photo" src="faune-06.jpg" alt="Faune sauvage 6">
-<div class="card-content"><h3>Dans la lumière</h3><p>Oiseaux</p></div>
+<img class="photo" src="faune-06.jpg" alt="Aigle de Steller" loading="lazy" decoding="async">
+<div class="card-content"><h3>Géant du nord</h3><p>Oiseaux</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-07.jpg</code></div>
+<img class="photo" src="faune-07.jpg" alt="Cou d'un flamant rose, en noir et blanc" loading="lazy" decoding="async">
+<div class="card-content"><h3>Élégance</h3><p>Oiseaux</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-08.jpg</code></div>
+<img class="photo" src="faune-08.jpg" alt="Grue royale et sa crête dorée" loading="lazy" decoding="async">
+<div class="card-content"><h3>Couronne</h3><p>Oiseaux</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-09.jpg</code></div>
+<img class="photo" src="faune-09.jpg" alt="Oryx de face" loading="lazy" decoding="async">
+<div class="card-content"><h3>Cornes</h3><p>Mammifères</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-10.jpg</code></div>
+<img class="photo" src="faune-10.jpg" alt="Grand-duc qui observe quelque chose au loin" loading="lazy" decoding="async">
+<div class="card-content"><h3>Regard lointain</h3><p>Oiseaux</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-11.jpg</code></div>
+<img class="photo" src="faune-11.jpg" alt="Singe suspendu à une branche" loading="lazy" decoding="async">
+<div class="card-content"><h3>Acrobate</h3><p>Mammifères</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-12.jpg</code></div>
+<img class="photo" src="faune-12.jpg" alt="Panthère nébuleuse dans la lumière du soleil" loading="lazy" decoding="async">
+<div class="card-content"><h3>Lumière dorée</h3><p>Mammifères</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-13.jpg</code></div>
+<img class="photo" src="faune-13.jpg" alt="Lynx endormi au soleil" loading="lazy" decoding="async">
+<div class="card-content"><h3>Sieste au soleil</h3><p>Mammifères</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-14.jpg</code></div>
+<img class="photo" src="faune-14.jpg" alt="Suricate aux aguets" loading="lazy" decoding="async">
+<div class="card-content"><h3>Aux aguets</h3><p>Mammifères</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-15.jpg</code></div>
+<img class="photo" src="faune-15.jpg" alt="Suricate en train de guetter" loading="lazy" decoding="async">
+<div class="card-content"><h3>Sentinelle</h3><p>Mammifères</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-16.jpg</code></div>
+<img class="photo" src="faune-16.jpg" alt="Martin-pêcheur juste avant de s'envoler" loading="lazy" decoding="async">
+<div class="card-content"><h3>Juste avant l'envol</h3><p>Oiseaux</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-17.jpg</code></div>
+<img class="photo" src="faune-17.jpg" alt="Martin-pêcheur de face" loading="lazy" decoding="async">
+<div class="card-content"><h3>Face à l'objectif</h3><p>Oiseaux</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-18.jpg</code></div>
+<img class="photo" src="faune-18.jpg" alt="Martin-pêcheur de côté" loading="lazy" decoding="async">
+<div class="card-content"><h3>De profil</h3><p>Oiseaux</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-19.jpg</code></div>
+<img class="photo" src="faune-19.jpg" alt="Ibis rouge en train de marcher" loading="lazy" decoding="async">
+<div class="card-content"><h3>Écarlate</h3><p>Oiseaux</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-20.jpg</code></div>
+<img class="photo" src="faune-20.jpg" alt="Harfang des neiges en train de crier" loading="lazy" decoding="async">
+<div class="card-content"><h3>Cri du Grand Nord</h3><p>Oiseaux</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-21.jpg</code></div>
+<img class="photo" src="faune-21.jpg" alt="Flamant rose en train de se gratter les plumes, en noir et blanc" loading="lazy" decoding="async">
+<div class="card-content"><h3>Toilette</h3><p>Oiseaux</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-22.jpg</code></div>
+<img class="photo" src="faune-22.jpg" alt="Tigre qui regarde l'objectif, en noir et blanc" loading="lazy" decoding="async">
+<div class="card-content"><h3>Regard de braise</h3><p>Mammifères</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>faune-23.jpg</code></div>
+<img class="photo" src="faune-23.jpg" alt="Tigre en noir et blanc" loading="lazy" decoding="async">
+<div class="card-content"><h3>Force tranquille</h3><p>Mammifères</p></div>
 </article>
 
 </div>
@@ -388,9 +498,13 @@ footer{padding:28px 0;color:#7a6f5e;border-top:1px solid var(--line);font-size:1
 document.querySelectorAll('.card').forEach(function(card){
   var img = card.querySelector('.photo');
   if(!img) return;
-  img.addEventListener('load', function(){ card.classList.add('has-photo'); });
+  function ok(){
+    card.classList.add('has-photo');
+    if(img.naturalWidth > img.naturalHeight * 1.15){ card.classList.add('wide'); }
+  }
+  img.addEventListener('load', ok);
   img.addEventListener('error', function(){ card.classList.remove('has-photo'); });
-  if(img.complete && img.naturalWidth > 0){ card.classList.add('has-photo'); }
+  if(img.complete && img.naturalWidth > 0){ ok(); }
 });
 
 // ===== ONGLETS =====
