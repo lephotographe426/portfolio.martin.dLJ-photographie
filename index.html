@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Martin de Lajudie — Photographe</title>
-<meta name="description" content="Portfolio de Martin de Lajudie, photographe animalier et automobile.">
+<meta name="description" content="Portfolio de Martin de Lajudie, photographe animalier, automobile et macro.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -69,14 +69,42 @@ section{padding:100px 0}
 .section-title{font-size:42px;font-weight:600;margin-bottom:12px}
 .section-intro{color:var(--muted);margin:0 0 44px;max-width:560px;line-height:1.6}
 
-.gallery-title{
-  display:flex;align-items:baseline;gap:14px;
-  font-size:23px;font-weight:500;margin:60px 0 20px;padding-bottom:14px;
+/* ===== ONGLETS ===== */
+.tabs{
+  display:flex;gap:8px;margin:0 0 8px;padding-bottom:0;
   border-bottom:1px solid var(--line);
+  overflow-x:auto;scrollbar-width:none;
 }
-.gallery-title span{
-  font-family:'Work Sans',sans-serif;font-size:12px;letter-spacing:.12em;
-  color:var(--muted);text-transform:uppercase;font-weight:500;
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  appearance:none;background:none;border:0;cursor:pointer;
+  position:relative;white-space:nowrap;
+  padding:16px 22px;margin-bottom:-1px;
+  font-family:'Fraunces',Georgia,serif;font-size:20px;font-weight:500;letter-spacing:-.01em;
+  color:var(--muted);border-bottom:2px solid transparent;
+  transition:color .25s ease,border-color .25s ease;
+}
+.tab .count{
+  font-family:'Work Sans',sans-serif;font-size:11px;letter-spacing:.1em;font-weight:500;
+  margin-left:10px;color:#7a6f5e;transition:color .25s ease;
+}
+.tab:hover{color:var(--text)}
+.tab:focus-visible{outline:2px solid var(--accent-light);outline-offset:-2px}
+.tab[aria-selected="true"]{color:var(--accent-light);border-bottom-color:var(--accent)}
+.tab[aria-selected="true"] .count{color:var(--accent-light)}
+
+.tab-panel[hidden]{display:none}
+.tab-panel{animation:panelIn .45s ease both}
+@keyframes panelIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:none}
+}
+.panel-sub{
+  color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:500;margin:26px 0 22px;
+}
+@media (prefers-reduced-motion:reduce){
+  .tab-panel{animation:none}
 }
 
 /* ===== PHOTO GRID / VIEWFINDER CARDS ===== */
@@ -154,6 +182,8 @@ footer{padding:28px 0;color:#7a6f5e;border-top:1px solid var(--line);font-size:1
   .stats{grid-template-columns:1fr}
   .card{min-height:300px}
   section{padding:70px 0}
+  .tab{padding:14px 16px;font-size:17px}
+  .tab .count{display:none}
 }
 </style>
 </head>
@@ -170,9 +200,9 @@ footer{padding:28px 0;color:#7a6f5e;border-top:1px solid var(--line);font-size:1
 </nav>
 
 <div class="container hero">
-<div class="eyebrow">Photographe • Animalier • Automobile</div>
+<div class="eyebrow">Photographe • Animalier • Automobile • Macro</div>
 <h1>Voir.<br>Capturer.<br><em>Raconter.</em></h1>
-<p>Bienvenue dans mon univers photographique. Je suis Martin de Lajudie, photographe passionné depuis 1 an, spécialisé dans la photographie animalière et automobile.</p>
+<p>Bienvenue dans mon univers photographique. Je suis Martin de Lajudie, photographe passionné depuis 1 an, spécialisé dans la photographie animalière, automobile et macro.</p>
 <a class="btn" href="#portfolio">Découvrir mon travail ↓</a>
 </div>
 </header>
@@ -181,49 +211,31 @@ footer{padding:28px 0;color:#7a6f5e;border-top:1px solid var(--line);font-size:1
 <section id="portfolio">
 <div class="container">
 <h2 class="section-title">Portfolio</h2>
-<p class="section-intro">Une sélection de mes photographies, entre faune sauvage, macrophotographie et automobile.</p>
+<p class="section-intro">Une sélection de mes photographies, entre faune sauvage, automobile et macrophotographie.</p>
 
 <!-- ============================================================
   COMMENT AJOUTER VOS PHOTOS
   1. Placez vos fichiers images dans le MÊME dossier que ce fichier index.html
   2. Nommez-les exactement comme indiqué dans chaque bloc <img> ci-dessous
-     (ex : macro-01.jpg, faune-01.jpg, auto-01.jpg ...)
+     (ex : faune-01.jpg, auto-01.jpg, macro-01.jpg ...)
   3. Tant qu'une photo n'est pas présente, un emplacement provisoire
      s'affiche automatiquement à sa place — vous n'avez rien d'autre à faire.
   4. Vous pouvez librement changer les titres et légendes (h3 / p) une fois
      vos photos en place.
+  5. Pour ajouter une photo, copiez un bloc <article class="card"> dans
+     l'onglet voulu. Les compteurs d'onglets se mettent à jour tout seuls.
 ============================================================= -->
 
-<h3 class="gallery-title">Macrophotographie <span>Insectes • Nature</span></h3>
-<div class="grid">
-
-<article class="card">
-<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>macro-01.jpg</code></div>
-<img class="photo" src="macro-01.jpg" alt="Macrophotographie 1">
-<div class="card-content"><h3>En plein vol</h3><p>Macrophotographie</p></div>
-</article>
-
-<article class="card">
-<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>macro-02.jpg</code></div>
-<img class="photo" src="macro-02.jpg" alt="Macrophotographie 2">
-<div class="card-content"><h3>Butinage</h3><p>Macrophotographie</p></div>
-</article>
-
-<article class="card">
-<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>macro-03.jpg</code></div>
-<img class="photo" src="macro-03.jpg" alt="Macrophotographie 3">
-<div class="card-content"><h3>Sur la lavande</h3><p>Macrophotographie</p></div>
-</article>
-
-<article class="card">
-<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>macro-04.jpg</code></div>
-<img class="photo" src="macro-04.jpg" alt="Macrophotographie 4">
-<div class="card-content"><h3>Délicatesse</h3><p>Macrophotographie</p></div>
-</article>
-
+<!-- ===== BARRE D'ONGLETS ===== -->
+<div class="tabs" role="tablist" aria-label="Catégories de photos">
+<button class="tab" role="tab" id="tab-animaliere" aria-controls="panel-animaliere" aria-selected="true" data-tab="animaliere">Animalière<span class="count"></span></button>
+<button class="tab" role="tab" id="tab-voiture" aria-controls="panel-voiture" aria-selected="false" tabindex="-1" data-tab="voiture">Voiture<span class="count"></span></button>
+<button class="tab" role="tab" id="tab-macro" aria-controls="panel-macro" aria-selected="false" tabindex="-1" data-tab="macro">Macro<span class="count"></span></button>
 </div>
 
-<h3 class="gallery-title">Oiseaux &amp; faune sauvage <span>Portraits • En vol</span></h3>
+<!-- ===== ONGLET 1 : PHOTO ANIMALIÈRE ===== -->
+<div class="tab-panel" role="tabpanel" id="panel-animaliere" aria-labelledby="tab-animaliere">
+<div class="panel-sub">Oiseaux &amp; faune sauvage • Portraits • En vol</div>
 <div class="grid">
 
 <article class="card">
@@ -263,8 +275,11 @@ footer{padding:28px 0;color:#7a6f5e;border-top:1px solid var(--line);font-size:1
 </article>
 
 </div>
+</div>
 
-<h3 class="gallery-title">Automobile <span>Détails • Caractère</span></h3>
+<!-- ===== ONGLET 2 : VOITURE ===== -->
+<div class="tab-panel" role="tabpanel" id="panel-voiture" aria-labelledby="tab-voiture" hidden>
+<div class="panel-sub">Automobile • Détails • Caractère</div>
 <div class="grid">
 
 <article class="card">
@@ -299,6 +314,40 @@ footer{padding:28px 0;color:#7a6f5e;border-top:1px solid var(--line);font-size:1
 
 </div>
 </div>
+
+<!-- ===== ONGLET 3 : MACRO ===== -->
+<div class="tab-panel" role="tabpanel" id="panel-macro" aria-labelledby="tab-macro" hidden>
+<div class="panel-sub">Macrophotographie • Insectes • Nature</div>
+<div class="grid">
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>macro-01.jpg</code></div>
+<img class="photo" src="macro-01.jpg" alt="Macrophotographie 1">
+<div class="card-content"><h3>En plein vol</h3><p>Macrophotographie</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>macro-02.jpg</code></div>
+<img class="photo" src="macro-02.jpg" alt="Macrophotographie 2">
+<div class="card-content"><h3>Butinage</h3><p>Macrophotographie</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>macro-03.jpg</code></div>
+<img class="photo" src="macro-03.jpg" alt="Macrophotographie 3">
+<div class="card-content"><h3>Sur la lavande</h3><p>Macrophotographie</p></div>
+</article>
+
+<article class="card">
+<div class="placeholder"><div class="ph-icon"></div><span>Emplacement photo</span><code>macro-04.jpg</code></div>
+<img class="photo" src="macro-04.jpg" alt="Macrophotographie 4">
+<div class="card-content"><h3>Délicatesse</h3><p>Macrophotographie</p></div>
+</article>
+
+</div>
+</div>
+
+</div>
 </section>
 
 <section id="apropos">
@@ -309,10 +358,10 @@ footer{padding:28px 0;color:#7a6f5e;border-top:1px solid var(--line);font-size:1
 </div>
 <div>
 <p>Je pratique la photographie depuis 1 an avec l'envie de capturer des images qui transmettent une émotion et racontent une histoire.</p>
-<p>Mon travail se concentre principalement sur deux univers : la photographie animalière, pour immortaliser la beauté et les comportements de la faune, et la photographie automobile, pour mettre en valeur les formes, les détails et le caractère des véhicules.</p>
+<p>Mon travail se concentre sur trois univers : la photographie animalière, pour immortaliser la beauté et les comportements de la faune, la photographie automobile, pour mettre en valeur les formes, les détails et le caractère des véhicules, et la macrophotographie, pour révéler le monde invisible des tout-petits.</p>
 <div class="stats">
 <div class="stat"><strong>1 an</strong><span>de photographie</span></div>
-<div class="stat"><strong>2</strong><span>univers principaux</span></div>
+<div class="stat"><strong>3</strong><span>univers principaux</span></div>
 <div class="stat"><strong>∞</strong><span>d'images à créer</span></div>
 </div>
 </div>
@@ -341,7 +390,60 @@ document.querySelectorAll('.card').forEach(function(card){
   if(!img) return;
   img.addEventListener('load', function(){ card.classList.add('has-photo'); });
   img.addEventListener('error', function(){ card.classList.remove('has-photo'); });
+  if(img.complete && img.naturalWidth > 0){ card.classList.add('has-photo'); }
 });
+
+// ===== ONGLETS =====
+(function(){
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.tab-panel'));
+
+  // Compteur de photos affiché à côté de chaque onglet
+  tabs.forEach(function(tab){
+    var panel = document.getElementById(tab.getAttribute('aria-controls'));
+    var n = panel.querySelectorAll('.card').length;
+    tab.querySelector('.count').textContent = n;
+  });
+
+  function activate(name, focus, updateHash){
+    tabs.forEach(function(tab){
+      var on = tab.dataset.tab === name;
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      tab.tabIndex = on ? 0 : -1;
+      if(on && focus) tab.focus();
+    });
+    panels.forEach(function(panel){
+      panel.hidden = panel.id !== 'panel-' + name;
+    });
+    if(updateHash){
+      try{ history.replaceState(null, '', '#portfolio-' + name); }catch(e){}
+    }
+  }
+
+  tabs.forEach(function(tab, i){
+    tab.addEventListener('click', function(){ activate(tab.dataset.tab, false, true); });
+    tab.addEventListener('keydown', function(e){
+      var next = null;
+      if(e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+      else if(e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if(e.key === 'Home') next = tabs[0];
+      else if(e.key === 'End') next = tabs[tabs.length - 1];
+      if(next){ e.preventDefault(); activate(next.dataset.tab, true, true); }
+    });
+  });
+
+  // Ouvre directement un onglet via l'adresse : ...#portfolio-voiture
+  function fromHash(){
+    var m = location.hash.match(/^#portfolio-(animaliere|voiture|macro)$/);
+    if(m){
+      activate(m[1], false, false);
+      var sec = document.getElementById('portfolio');
+      if(sec) sec.scrollIntoView();
+    }
+  }
+  fromHash();
+  window.addEventListener('hashchange', fromHash);
+})();
 </script>
 </body>
 </html>
